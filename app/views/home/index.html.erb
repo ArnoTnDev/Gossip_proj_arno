@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/stylesheets/application.css">
+    <title>The Gossip Project</title>
+</head>
+<body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">The Gossip Project</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <%= link_to "Home", root_path, :class => "nav-item nav-link  active" %> 
+            </li>
+            <li class="nav-item">
+              <%= link_to "Team", team_path, :class => "nav-item nav-link" %> 
+            </li>
+            <li class="nav-item">
+              <%= link_to "Contact", contact_path, :class => "nav-item nav-link" %> 
+            </li>
+          </ul>
+          <span class="navbar-text">
+            <%= link_to "Log Out", session_path(session.id), method: :delete, class: "btn btn-outline-danger", id: "logout" %>
+          </span>
+        </div>
+      </nav>
+
+      <div class="container">
+        <h1 class="text-center mt-4">Welcome <%= User.find_by(id: session[:user_id]).first_name %></h1>
+        <h4 class="text-muted text-center mb-5">Let's bitchin' !</h3>
+        <%= link_to "Create a new Gossip", new_gossip_path, class: "btn btn-success" %>
+        <h4 class="text-muted mt-4 mb-4">Gossip List :</h4>
+        <div class="row row-cols-3">
+          <% @gossips.each do |g| %>
+          <div class="col mb-5">
+          <div class="card" style="width: 18rem; height: 8rem;">
+            <div class="card-body">
+              <h5 class="card-title text-center"><%= link_to g.title, gossip_path(@id = g.id), :class => "text-center" %></h5>
+              <h6 class="card-subtitle mb-4 text-muted text-center"><%= g.user.first_name + " " + g.user.last_name %></h6>
+            </div>
+          </div>
+        </div>
+          <% end %>
+        </div>
+      </div>
+
+
+</body>
+</html>

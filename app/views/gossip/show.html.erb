@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/stylesheets/application.css">
+    <title>The Gossip Project</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">The Gossip Project</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <%= link_to "Home", root_path, :class => "nav-item nav-link active" %> 
+            <%= link_to "Team", team_path, :class => "nav-item nav-link" %> 
+            <%= link_to "Contact", contact_path, :class => "nav-item nav-link" %> 
+          </div>
+        </div>
+      </nav>
+      <div class="container text-center">
+          <h1 class="text-center"><%= @gossips.find(@id).title %></h1>
+          <% user_name = @gossips.find(@id).user.first_name + " " + @gossips.find(@id).user.last_name %>
+          <% user_id = @gossips.find(@id).user.id %>
+          <h4 class="text-center text-muted"><%= link_to user_name, user_path(user_id) %></h4>
+          <p><%= @gossips.find(@id).content %></p>
+          <p class="text-muted"><%= @gossips.find(@id).created_at %></p>
+          <p class="text-muted">à <%= link_to @gossips.find(@id).user.city.name, city_path(@id), class: "text-secondary font-weight-bold" %></p> 
+          <a href="<%= edit_gossip_path(@id) %>" class="btn btn-primary">Edit Gossip</a>
+          <a href="<%= gossip_path(@id) %>" class="btn btn-danger" data-method="DELETE">Delete Gossip</a>
+      </div>
+      </body>
+      </html>

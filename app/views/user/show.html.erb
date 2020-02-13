@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/stylesheets/application.css">
+    <title>The Gossip Project</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">The Gossip Project</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <%= link_to "Home", root_path, :class => "nav-item nav-link active" %> 
+            <%= link_to "Team", team_path, :class => "nav-item nav-link" %> 
+            <%= link_to "Contact", contact_path, :class => "nav-item nav-link" %> 
+          </div>
+        </div>
+      </nav>
+      <div class="container text-center">
+          <h1 class="text-center"><%= @users.find(@id).first_name + " " + @users.find(@id).last_name %></h1>
+          <h3><%= @users.find(@id).age %> years, <%= @users.find(@id).city.name %></p>
+          <h4 class="text-center text-muted"><%= @users.find(@id).description %></h4>
+          
+         <p class="text-muted"><%= @users.find(@id).email%></p>
+      </div>
+      </body>
+      </html>
